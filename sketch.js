@@ -111,7 +111,7 @@ let rc;
 function setup() {
 randomSeed(int(fxrand()*100000000))
   const canvas = createCanvas(3001, 3001);
-
+//angleMode(DEGREES)
   rc = rough.canvas(canvas.canvas);
   background(colors.main);
   noLoop();
@@ -158,20 +158,34 @@ if (boxStyle<0.09){
 
 let	x = 100+random(2500,2800)
 let y = 100+random(2500,2800)
-let shapesize=random(330,700);
+let shapesize=random(330,500);
 let stepsize=random(0.01,0.03);
 
 for (let k=0;k<8;k++){
+push()
+translate(random(0,600),random(0,600))
+ carve(x,y)
+  pop()
 
-  carve(x,y)
+  // push()
+  // translate(random(200,200),random(200,400))
+  // rotate(PI/3)
+  // translate(random(0,200),random(-160,-300))
+  //   carve(x,y)
+  //   pop()
+
+
  //print(k)
  }
 x1 = 100+random(100,1500)
 y1= 100+random(100,1500)
 for (let k=0;k<1;k++){
-
+push()
+translate(random(0,300),random(300,600))
 		carve2(x1,y1,shapesize,0)
     carve2(x1,y1,shapesize,0)
+      carve2(x1,y1,shapesize,0)
+      pop()
     //	carve2(x1,y1,shapesize,0)
 
 	//print(k)
@@ -180,14 +194,21 @@ for (let k=0;k<1;k++){
 
 
 
- drawFrames(random([colors.sand1,colors.sand2]),1)
- drawFrames(random([colors.sand1,colors.sand2]),1)
- drawFrames(random([colors.sand1,colors.sand2]),1)
- drawFrames(random([colors.sand1,colors.sand2]),1)
+ drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),1)
+drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),1)
+drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand1]),1)
+drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand1]),1)
+drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand1]),1)
+//drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand1]),1)
+//drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),1)
 
-
- drawFrames(random([colors.sand1,colors.sand2]),1)
- drawFrames(random([colors.sand1,colors.sand2]),1)
+ // drawFrames(random([colors.sand1,colors.sand2]),1)
+ // drawFrames(random([colors.sand1,colors.sand2]),1)
+ // drawFrames(random([colors.sand1,colors.sand2]),1)
+ //
+ //
+ // drawFrames(random([colors.sand1,colors.sand2]),1)
+ // drawFrames(random([colors.sand1,colors.sand2]),1)
 
 }
 
@@ -313,8 +334,8 @@ function carve(){
 
 	//print("angle"+m[100][100])
 
-		x = 100+random(100,2900)
-	 y = 100+random(100,2900)
+		x = 100+random(500,1900)
+	 y = 100+random(500,1900)
 	let num_steps=100
 
 	strokeWeight(0.1)
@@ -336,10 +357,10 @@ function carve(){
 	//vertex(1100,1300)
 	beginShape()
 	let dice2=random(0,1)
-	 shapesize=random(330,700);
+	 shapesize=random(330,500);
 	 stepsize=random(0.1,0.3);
 	stroke(random([coloring.color1,coloring.color2,coloring.color3]))
-	for (k=0;k<50+random(1050,5000);k+=1+random(0,3)) {
+	for (k=0;k<50+random(250,400);k+=1+random(0,3)) {
 		strokeWeight(0.1+random(0,0.5))
 
 
@@ -358,25 +379,27 @@ function carve(){
 			if (dice2>0.50){
 				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
 				noFill()
-				rect(x,y,shapesize,shapesize)
+			rect(x,y,shapesize,shapesize)
 				vertex(x, y)
 			}
-			else if (dice2<0.20 && dice2>0.185){
+			else if (dice2<0.20 && dice2>0.1){
 				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
 				//fill(random([coloring.color1,coloring.color2,coloring.color3]))
 				//	ellipse(x,y,shapesize,shapesize)
-				rect(x,y,shapesize,shapesize)
+			//	rect(x,y,shapesize,shapesize)
 				vertex(x, y)
 
 			}
-			else if (dice2<0.30 && dice2>0.265){
+			else if (dice2<0.30 && dice2>0.2){
 				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
 				//	fill(255)
 			//	fill(random([coloring.color1,coloring.color2,coloring.color3]))
 				//	ellipse(x,y,shapesize,shapesize)
+        noFill()
 				rect(x,y,shapesize,random(1,1)*shapesize)
+    	vertex(x, y)
 			}
-			else if (dice2<0.62){
+			else if (dice2<0.92){
 				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
 				//				fill(0)
 				noFill()
@@ -397,12 +420,14 @@ function carve(){
 			}
 			//
 			//pop()
+
 			x = x + x_step+int(random(0,1))
 			y = y + y_step+int(random(0,1))
 
 
 			circle(x,y,3)
 		}
+    stroke(random([coloring.color1,coloring.color2,coloring.color3]))
 
 		endShape()
 	}
@@ -488,7 +513,7 @@ function carve2(x,y,shapesize,wiggle){
 //	let dice2=random(0,1)
 	let stepsize=random(0.1,0.2);
 //	print("dice2=  "+dice2)
-	let curvelength=random(315,500);
+	let curvelength=random(215,400);
 	//stroke(255)
  //measure balance
  let tl=0
