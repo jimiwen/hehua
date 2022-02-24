@@ -156,19 +156,36 @@ if (boxStyle<0.09){
 //   stroke: "transparent",
 // });
 
+let	x = 100+random(2500,2800)
+let y = 100+random(2500,2800)
+let shapesize=random(330,700);
+let stepsize=random(0.01,0.03);
 
-for (let k=0;k<20;k++){
+for (let k=0;k<8;k++){
 
-		carve()
+  carve(x,y)
+ //print(k)
+ }
+x1 = 100+random(100,1500)
+y1= 100+random(100,1500)
+for (let k=0;k<1;k++){
+
+		carve2(x1,y1,shapesize,0)
+    carve2(x1,y1,shapesize,0)
+    //	carve2(x1,y1,shapesize,0)
+
 	//print(k)
 	}
 
-hachangle=random(0,90)
-//drawFrames()
+
+
+
  drawFrames(random([colors.sand1,colors.sand2]),1)
  drawFrames(random([colors.sand1,colors.sand2]),1)
  drawFrames(random([colors.sand1,colors.sand2]),1)
  drawFrames(random([colors.sand1,colors.sand2]),1)
+
+
  drawFrames(random([colors.sand1,colors.sand2]),1)
  drawFrames(random([colors.sand1,colors.sand2]),1)
 
@@ -246,8 +263,8 @@ function drawFrames(coloring,thick){
 
 function carve(){
 
-  let width =1500
-  	let height = 1500
+  let width =2500
+  	let height = 2500
 
   	left_x = int(width * -0.5)
   	right_x = int(width * 1.5)
@@ -269,9 +286,9 @@ function carve(){
 	//print("m length "+m.length)
 
 	gain=int(random(-3.1,3.1));
-	bend=random(0.2,0.3);
+	bend=random(0.012,0.013);
 	offset=random(0,num_rows)
-	if (random(0,1)<1) {
+	if (random(0,1)<0.5) {
 		quantum=1;
 		for (let column=0; column<num_columns; column++) {
 			for (row=0; row<num_rows; row++) {
@@ -296,8 +313,8 @@ function carve(){
 
 	//print("angle"+m[100][100])
 
-	let	x = 100+random(100,2900)
-	let y = 100+random(100,2900)
+		x = 100+random(100,2900)
+	 y = 100+random(100,2900)
 	let num_steps=100
 
 	strokeWeight(0.1)
@@ -319,8 +336,8 @@ function carve(){
 	//vertex(1100,1300)
 	beginShape()
 	let dice2=random(0,1)
-	let shapesize=random(330,700);
-	let stepsize=random(0.1,0.3);
+	 shapesize=random(330,700);
+	 stepsize=random(0.1,0.3);
 	stroke(random([coloring.color1,coloring.color2,coloring.color3]))
 	for (k=0;k<50+random(1050,5000);k+=1+random(0,3)) {
 		strokeWeight(0.1+random(0,0.5))
@@ -390,6 +407,189 @@ function carve(){
 		endShape()
 	}
 
+}
+
+function carve2(x,y,shapesize,wiggle){
+
+  let width =2500
+    let height = 2500
+
+    left_x = int(width * -0.5)
+    right_x = int(width * 1.5)
+    top_y = int(height * -0.5)
+    bottom_y = int(height * 1.5)
+    resolution = int(width * 0.01)
+
+
+    num_columns = 3*int((right_x - left_x) / resolution)
+    num_rows = 3*int((bottom_y - top_y) / resolution)
+
+	// initialise field
+	let Array2D = (r,c) => [...Array(r)].map(x=>Array(c).fill(0));
+	let m = Array2D(num_columns,num_rows);
+
+	//print("m length "+m.length)
+	if (random(0,1)>0.5){
+		gain=int(random(1.1,3.1));
+	}
+	else{
+		gain=int(random(-3.1,-1.1));
+	}
+
+	bend=random(0.1,0.2);
+	offset=random(0,num_rows)
+	if (random(0,1)<0.2) {
+		quantum=1;
+		for (let column=0; column<num_columns; column++) {
+			for (row=0; row<num_rows; row++) {
+
+				angle = (quantum*(row-offset-gain*bend*column) / (num_rows*bend))/quantum * PI*gain
+				// print('angle'+angle)
+				m[column][row] = angle
+			}
+		}
+	}
+	else{
+		quantum=random(12,13);
+		for (let column=0; column<num_columns; column++) {
+			for (row=0; row<num_rows; row++) {
+
+				angle = int(quantum*((row-offset-gain*bend*column) / (num_rows*bend))/quantum) * PI*gain
+				// print('angle'+angle)
+				m[column][row] = angle
+			}
+		}
+	}
+
+	//print("angle"+m[100][100])
+
+	// let	x = 100+random(-100,1000)
+	// let y = 100+random(-100,1000)
+	let num_steps=100
+
+	// strokeWeight(0.1)
+	// dice=random(0,1)
+	// if (dice<0.95){
+	// 	noFill()
+	// 	stroke(255)
+	// }
+	// else if (dice>0.995){
+	// 	fill(255)
+	// noStroke();
+	// }
+	// else {
+	// 	 fill(0)
+	// 	stroke(255)
+	// }
+
+	//vertex(100,100)
+	//vertex(1100,1300)
+
+//	let dice2=random(0,1)
+	let stepsize=random(0.1,0.2);
+//	print("dice2=  "+dice2)
+	let curvelength=random(315,500);
+	//stroke(255)
+ //measure balance
+ let tl=0
+ let tr=0
+ let bl=0
+ let br=0
+ let centrepoint =900
+ xtemp=x;
+ ytemp=y;
+
+
+	for (k=0;k<50+curvelength;k+=1+random(0,2)) {
+		strokeWeight(0.1+random(0,0.5))
+
+
+		x_offset = xtemp - left_x
+		y_offset = ytemp - top_y
+
+		if (x_offset<6100 && y_offset< 6100 && x_offset>0 && y_offset>0  ) {
+			column_index = int(x_offset / resolution)
+			row_index = int(y_offset / resolution)
+			//	print(column_index,row_index)
+			// NOTE: normally you want to check the bounds here
+			grid_angle = m[column_index][row_index]
+			x_step = stepsize*resolution * cos(grid_angle)
+			y_step = stepsize*resolution * sin(grid_angle)
+			//
+			//pop()
+			xtemp = xtemp + x_step+int(random(0,1));
+			ytemp = ytemp + y_step+int(random(0,1));
+//      print(xtemp,ytemp)
+      if (xtemp < centrepoint && ytemp < centrepoint){
+				tl=tl+1;
+			}
+			else if (xtemp < centrepoint && ytemp > centrepoint){
+				bl=bl+1;
+			}
+			else if (xtemp > centrepoint && ytemp < centrepoint) {
+				tr=tr+1;
+			}
+			else{
+				br=br+1;
+			}
+		}
+	}
+// print("tl= "+tl)
+// print("tr= "+tr)
+// print("bl= "+bl)
+// print("br= "+br)
+
+
+
+
+shiftX=wiggle*600*(tl-tr+bl-br)/(tl+tr+bl+br);
+shiftY=wiggle*600*(tl+tr-bl-br)/(tl+tr+bl+br);
+// print(shiftX,shiftY)
+// print(x,y)
+x=x+shiftX;
+y=y+shiftY;
+print(x,y)
+
+	//draw
+	for (k=0;k<50+curvelength;k+=1+random(0,3)) {
+		strokeWeight(0.1+random(0,0.5))
+
+
+		x_offset = x - left_x
+		y_offset = y - top_y
+		if (x_offset<3100 && y_offset< 3100 && x_offset>0 && y_offset>0  ) {
+			column_index = int(x_offset / resolution)
+			row_index = int(y_offset / resolution)
+			//	print(column_index,row_index)
+			// NOTE: normally you want to check the bounds here
+			grid_angle = m[column_index][row_index]
+			x_step = stepsize*resolution * cos(grid_angle)
+			y_step = stepsize*resolution * sin(grid_angle)
+			//	vertex(x, y)
+
+
+			//main curve
+			stroke(random([coloring.color1,coloring.color2,coloring.color3])
+)
+// 			fill(random([coloring2.color1,coloring2.color2,coloring2.color3])
+// )
+noFill()
+			//	ellipse(x,y,shapesize,shapesize)
+			rect(x,y,shapesize,random(1,1)*shapesize)
+
+			//
+			//pop()
+			x = x + x_step+int(random(0,1))
+			y = y + y_step+int(random(0,1))
+
+//print(x,y)
+
+	//		circle(x,y,3)
+		}
+
+
+	}
+	return x,y,shapesize;
 }
 //     License : Copyright (C) 2022 Jimi Y. C. Wen . All rights reserved.\n
 //     Licensed under CC BY-NC-SA 4.0
