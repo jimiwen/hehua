@@ -1,4 +1,4 @@
-let seasonpicker= Xrandom(0,1);
+let seasonpicker= Xrandom(0.9,1);
 let boxStyle=Xrandom(0,1);
 let handStyle=Xrandom(0,1);
 let windowNum=Xrandom(0,1);
@@ -105,7 +105,7 @@ if (seasonpicker<0.5){
 
 
 
-let  ground = 800 * 0.95;
+
 let rc;
 
 function setup() {
@@ -123,35 +123,59 @@ function draw() {
 
 
 if (boxStyle<0.09){
-  blendMode(DARKEST) //畫出裱
+  blendMode(BLEND) //畫出裱
 }else{
   blendMode(BLEND)
 }
 
-for (let k=0;k<40;k++){
+// let paper=[
+//   [0,0],
+//   [0,3000],
+//   [3000,3000],
+//   [3000,0]
+// ];
+// rc.polygon(paper, {
+//   fill: random([colors.sand1,colors.sand2]),
+//   fillStyle: random(["hachure"]),
+//   fillWeight: 1*random(0.11,0.3),
+//   hachureAngle: random(0,180),
+//   stroke: "transparent",
+// });
+// rc.polygon(paper, {
+//   fill: random([colors.sand1,colors.sand2]),
+//   fillStyle: random(["hachure"]),
+//   fillWeight: 1*random(0.11,0.3),
+//   hachureAngle: random(0,180),
+//   stroke: "transparent",
+// });
+// rc.polygon(paper, {
+//   fill: random([colors.sand1,colors.sand2]),
+//   fillStyle: random(["hachure"]),
+//   fillWeight: 1*random(0.11,0.3),
+//   hachureAngle: random(0,180),
+//   stroke: "transparent",
+// });
+
+
+for (let k=0;k<20;k++){
 
 		carve()
 	//print(k)
 	}
 
 hachangle=random(0,90)
-drawFrames()
-push()
-translate(0,500)
- drawMountainLine(hachangle,handStyle,windowNum)
-  blendMode(BLEND)
- drawMountainLine(hachangle,handStyle,windowNum)
-pop()
+//drawFrames()
+ drawFrames(random([colors.sand1,colors.sand2]),1)
+ drawFrames(random([colors.sand1,colors.sand2]),1)
+ drawFrames(random([colors.sand1,colors.sand2]),1)
+ drawFrames(random([colors.sand1,colors.sand2]),1)
+ drawFrames(random([colors.sand1,colors.sand2]),1)
+ drawFrames(random([colors.sand1,colors.sand2]),1)
 
-
-drawFrames(colors.main,2)
-drawFrames(random([colors.sand1,colors.sand2]),1)
-drawFrames(random([colors.sand1,colors.sand2]),1)
-drawFrames(random([colors.sand1,colors.sand2]),1)
 }
 
 function exportImage() {
-  save(`mumountain_${fxhash}.png`)
+  save(`hehua_${fxhash}.png`)
 }
 
 
@@ -174,12 +198,49 @@ function drawFrames(coloring,thick){
     [3000,0],
     [0,0]
   ]
-  rc.polygon(framepoints, {
+
+  framepointRandom=[
+    [random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])],
+    [random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])],
+  [random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])],
+  [random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])],
+  [random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])],
+  ];
+
+  rc.polygon(framepointRandom, {
     fill: coloring,
     fillStyle: random(["hachure"]),
-    fillWeight: thick*random(1,1.3),
+    fillWeight: thick*random(0.11,0.3),
     hachureAngle: random(0,180),
-    stroke: "solid",
+    stroke: "transparent",
+  });
+  rc.polygon(framepointRandom, {
+    fill: coloring,
+    fillStyle: random(["hachure"]),
+    fillWeight: thick*random(0.11,0.3),
+    hachureAngle: random(0,180),
+    stroke: "transparent",
+  });
+  rc.polygon(framepointRandom, {
+    fill: coloring,
+    fillStyle: random(["hachure"]),
+    fillWeight: thick*random(0.11,0.3),
+    hachureAngle: random(0,180),
+    stroke: "transparent",
+  });
+  rc.polygon(framepointRandom, {
+    fill: coloring,
+    fillStyle: random(["hachure"]),
+    fillWeight: thick*random(0.11,0.3),
+    hachureAngle: random(0,180),
+    stroke: "transparent",
+  });
+  rc.polygon(framepointRandom, {
+    fill: coloring,
+    fillStyle: random(["hachure"]),
+    fillWeight: thick*random(0.11,0.3),
+    hachureAngle: random(0,180),
+    stroke: "transparent",
   });
 }
 
