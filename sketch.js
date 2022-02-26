@@ -156,27 +156,12 @@ if (boxStyle<0.09){
 //   stroke: "transparent",
 // });
 
-let	x = 100+random(2500,2800)
-let y = 100+random(2500,2800)
+let	x = 100+random(500,1800)
+let y = 100+random(500,1800)
 let shapesize=random(330,500);
 let stepsize=random(0.01,0.03);
 
-for (let k=0;k<8;k++){
-push()
-translate(random(0,600),random(0,600))
- carve(x,y)
-  pop()
 
-  // push()
-  // translate(random(200,200),random(200,400))
-  // rotate(PI/3)
-  // translate(random(0,200),random(-160,-300))
-  //   carve(x,y)
-  //   pop()
-
-
- //print(k)
- }
 x1 = 100+random(100,1500)
 y1= 100+random(100,1500)
 for (let k=0;k<1;k++){
@@ -184,13 +169,30 @@ push()
 translate(random(0,300),random(300,600))
 		carve2(x1,y1,shapesize,0)
     carve2(x1,y1,shapesize,0)
-      carve2(x1,y1,shapesize,0)
+    //  carve2(x1,y1,shapesize,0)
       pop()
     //	carve2(x1,y1,shapesize,0)
 
 	//print(k)
 	}
 
+  pos=[x,y]
+  for (let k=0;k<6;k++){
+  push()
+  translate(random(0,600),random(0,600))
+   pos=carve(3000-pos[x],3000-pos[y])
+    pop()
+
+    // push()
+    // translate(random(200,200),random(200,400))
+    // rotate(PI/3)
+    // translate(random(0,200),random(-160,-300))
+    //   carve(x,y)
+    //   pop()
+
+
+   //print(k)
+   }
 
 
 
@@ -347,10 +349,12 @@ function carve(){
 	else if (dice>0.999995){
 		//fill(random([coloring.color1,coloring.color2,coloring.color3]))
 		noStroke();
+    noFill()
 	}
 	else {
 		//fill(random([coloring.color1,coloring.color2,coloring.color3]))
 		stroke(random([coloring.color1,coloring.color2,coloring.color3]))
+    noFill()
 	}
 
 	//vertex(100,100)
@@ -379,14 +383,14 @@ function carve(){
 			if (dice2>0.50){
 				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
 				noFill()
-			rect(x,y,shapesize,shapesize)
+			//rect(x,y,shapesize,shapesize)
 				vertex(x, y)
 			}
 			else if (dice2<0.20 && dice2>0.1){
 				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
 				//fill(random([coloring.color1,coloring.color2,coloring.color3]))
 				//	ellipse(x,y,shapesize,shapesize)
-			//	rect(x,y,shapesize,shapesize)
+				rect(x,y,shapesize,shapesize)
 				vertex(x, y)
 
 			}
@@ -399,7 +403,7 @@ function carve(){
 				rect(x,y,shapesize,random(1,1)*shapesize)
     	vertex(x, y)
 			}
-			else if (dice2<0.92){
+			else if (dice2<0.7){
 				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
 				//				fill(0)
 				noFill()
@@ -428,10 +432,11 @@ function carve(){
 			circle(x,y,3)
 		}
     stroke(random([coloring.color1,coloring.color2,coloring.color3]))
-
+noFill()
 		endShape()
 	}
-
+posi=[x,y];
+return posi
 }
 
 function carve2(x,y,shapesize,wiggle){
