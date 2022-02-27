@@ -134,7 +134,7 @@ vertpos4=[random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])]
 
 
 
-for (let k=0;k<18;k++){
+for (let k=0;k<random(4,18);k++){
   x1 = 200+random(100,2300)
   y1= 200+random(100,2300)
 push()
@@ -168,12 +168,20 @@ drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sa
 
 
   pos=[x,y]
-  for (let k=0;k<16;k++){
+  for (let k=0;k<random(4,16);k++){
   push()
-//  translate(random(0,600),random(0,600))
- pos=carve(3000-pos[x],3000-pos[y],vertpos1,vertpos2,vertpos3,vertpos4,0)
+pos=carve(3000-pos[x],3000-pos[y],vertpos1,vertpos2,vertpos3,vertpos4,0)
+console.log(pos)
     pop()
    }
+posgras=[random(100,900),random(100,900)]
+   for (let k=0;k<2;k++){
+   push()
+   rotate(random(0,PI/12))
+  // translate(random(1330,1500),random(530,800))
+  posgras=carve3(posgras[0],posgras[1])
+     pop()
+    }
 
 
    vertpos1=[random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])]
@@ -182,7 +190,7 @@ drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sa
    vertpos4=[random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])]
 
 
-   for (let k=0;k<16;k++){
+   for (let k=0;k<random(4,16);k++){
    push()
   //translate(random(0,600),random(0,600))
   pos=carve(3000-pos[x],3000-pos[y],vertpos1,vertpos2,vertpos3,vertpos4,1)
@@ -234,36 +242,36 @@ offset=random(50,100);
     [3000,0],
     [0,0]
   ];
-  // rc.polygon(framepoints, {
-  //   fill: random([colors.body2,colors.body1,colors.sea2,colors.sea1,colors.sand2]),
-  //   fillStyle: random(["hachure"]),
-  //   fillWeight: thick*random(0.11,0.3),
-  //   hachureAngle: random(0,180),
-  //   stroke: "transparent",
-  // });
-  // rc.polygon(framepoints, {
-  //   fill: random([colors.sand1,colors.sand1,colors.sea2,colors.sea1,colors.sand2]),
-  //   fillStyle: random(["hachure"]),
-  //   fillWeight: thick*random(0.11,0.3),
-  //   hachureAngle: random(0,180),
-  //   stroke: "transparent",
-  // });
-
-
   rc.polygon(framepoints, {
-    fill: random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),
+    fill: random([colors.body2,colors.body1,colors.sea2,colors.sea1,colors.sand2]),
     fillStyle: random(["hachure"]),
     fillWeight: thick*random(0.11,0.3),
     hachureAngle: random(0,180),
     stroke: "transparent",
   });
   rc.polygon(framepoints, {
-    fill: random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),
+    fill: random([colors.sand1,colors.sand1,colors.sea2,colors.sea1,colors.sand2]),
     fillStyle: random(["hachure"]),
     fillWeight: thick*random(0.11,0.3),
     hachureAngle: random(0,180),
     stroke: "transparent",
   });
+
+  //
+  // rc.polygon(framepoints, {
+  //   fill: random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),
+  //   fillStyle: random(["hachure"]),
+  //   fillWeight: thick*random(0.11,0.3),
+  //   hachureAngle: random(0,180),
+  //   stroke: "transparent",
+  // });
+  // rc.polygon(framepoints, {
+  //   fill: random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),
+  //   fillStyle: random(["hachure"]),
+  //   fillWeight: thick*random(0.11,0.3),
+  //   hachureAngle: random(0,180),
+  //   stroke: "transparent",
+  // });
 
 }
 //
@@ -634,6 +642,143 @@ strokeWeight(0.1)
 
 	}
 	return x,y,shapesize;
+}
+
+
+function carve3(x,y){
+  let width =2500
+  	let height = 2500
+  	left_x = int(width * -0.5)
+  	right_x = int(width * 1.5)
+  	top_y = int(height * -0.5)
+  	bottom_y = int(height * 1.5)
+  	resolution = int(width * 0.01)
+  	num_columns = 3*int((right_x - left_x) / resolution)
+  	num_rows = 3*int((bottom_y - top_y) / resolution)
+  	//	print('num_columns'+ num_columns)
+  	//	print('num_rows'+ num_rows)
+	// initialise field
+	let Array2D = (r,c) => [...Array(r)].map(x=>Array(c).fill(0));
+	let m = Array2D(num_columns,num_rows);
+	//print("m length "+m.length)
+	gain=int(random(-3.1,3.1));
+	bend=random(0.012,0.013);
+	offset=random(0,num_rows)
+	if (random(0,1)<0.9) {
+		quantum=1;
+		for (let column=0; column<num_columns; column++) {
+			for (row=0; row<num_rows; row++) {
+				angle = (quantum*(row-offset-gain*bend*column) / (num_rows*bend))/quantum * PI*gain
+				// print('angle'+angle)
+				m[column][row] = angle
+			}
+		}
+	}
+	else{
+		quantum=random(2,3);
+		for (let column=0; column<num_columns; column++) {
+			for (row=0; row<num_rows; row++) {
+				angle = int(quantum*((row-offset-gain*bend*column) / (num_rows*bend))/quantum) * PI*gain
+				// print('angle'+angle)
+				m[column][row] = angle
+			}
+		}
+	}
+	//print("angle"+m[100][100])
+		x = 100+random(500,1900)
+	 y = 100+random(500,1900)
+	let num_steps=100
+	strokeWeight(0.1)
+	dice=random(0,1)
+	if (dice<0.95){
+		noFill()
+		stroke(random([coloring.color1,coloring.color2,coloring.color3]))
+	}
+	else if (dice>0.999995){
+		//fill(random([coloring.color1,coloring.color2,coloring.color3]))
+		noStroke();
+    noFill()
+	}
+	else {
+		//fill(random([coloring.color1,coloring.color2,coloring.color3]))
+		stroke(random([coloring.color1,coloring.color2,coloring.color3]))
+    noFill()
+	}
+
+	//vertex(100,100)
+	//vertex(1100,1300)
+	beginShape()
+	let dice2=random(0,1)
+	 shapesize=random(330,500);
+	 stepsize=random(0.1,0.3);
+	stroke(random([coloring.color1,coloring.color2,coloring.color3]))
+	for (k=0;k<50+random(250,400);k+=1+random(0,3)) {
+		strokeWeight(0.8+random(0,0.5))
+		x_offset = x - left_x
+		y_offset = y - top_y
+		if (x_offset<3100 && y_offset< 3100 && x_offset>0 && y_offset>0  ) {
+			column_index = int(x_offset / resolution)
+			row_index = int(y_offset / resolution)
+			//	print(column_index,row_index)
+			grid_angle = m[column_index][row_index]
+			x_step = stepsize*resolution * cos(grid_angle)
+			y_step = stepsize*resolution * sin(grid_angle)
+			//	vertex(x, y)
+			//draw shapes
+			if (dice2>0.50){
+				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
+				noFill()
+	//		rect(x,y,shapesize,shapesize)
+			//rect(x,y,shapesize,shapesize)
+				vertex(x, y)
+			}
+			else if (dice2<0.20 && dice2>0.1){
+				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
+				//fill(random([coloring.color1,coloring.color2,coloring.color3]))
+				//	ellipse(x,y,shapesize,shapesize)
+			//	rect(x,y,shapesize,shapesize)
+	//			rect(x,y,shapesize,shapesize)
+				vertex(x, y)
+
+			}
+			else if (dice2<0.30 && dice2>0.2){
+				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
+				//	fill(255)
+			//	fill(random([coloring.color1,coloring.color2,coloring.color3]))
+				//	ellipse(x,y,shapesize,shapesize)
+        noFill()
+			//	rect(x,y,shapesize,random(1,1)*shapesize)
+    	vertex(x, y)
+			}
+			else if (dice2<0.92){
+		//	else if (dice2<0.7){
+				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
+				//				fill(0)
+				noFill()
+				vertex(x, y)
+			}
+			else {
+				//	noFill()
+				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
+				//fill(0)
+				noFill()
+				rect(x,y,random(1,1)*shapesize,shapesize)
+				//	vertex(x, y)
+			}
+			//
+			//pop()
+			x = x + x_step+int(random(0,1))
+			y = y + y_step+int(random(0,1))
+			circle(x,y,3)
+		}
+    stroke(random([coloring.color1,coloring.color2,coloring.color3]))
+
+noFill()
+		endShape()
+	}
+
+posi=[x,y];
+return posi
 }
 //     License : Copyright (C) 2022 Jimi Y. C. Wen . All rights reserved.\n
 //     Licensed under CC BY-NC-SA 4.0
