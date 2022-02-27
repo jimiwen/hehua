@@ -2,6 +2,8 @@ let seasonpicker= Xrandom(0.9,1);
 let boxStyle=Xrandom(0,1);
 let handStyle=Xrandom(0,1);
 let windowNum=Xrandom(0,1);
+let rc;
+
 
 function Xrandom(x,y){
   return (y-x)*fxrand()+x;
@@ -106,7 +108,7 @@ if (seasonpicker<0.5){
 
 
 
-let rc;
+
 
 function setup() {
 randomSeed(int(fxrand()*100000000))
@@ -116,11 +118,182 @@ randomSeed(int(fxrand()*100000000))
   background(colors.main);
   noLoop();
 
+
+
+
+
+
+//  console.log(dishichengtu)
 }
 
 function draw() {
+raddd=600;
+  dishichengtu=[
+    [1500+raddd*cos(1*2*PI/10),1500+raddd*sin(1*2*PI/10)],
+  [1500+raddd*cos(2*2*PI/10),1500+raddd*sin(2*2*PI/10)],
+  [1500+raddd*cos(3*2*PI/10),1500+raddd*sin(3*2*PI/10)],
+  [1500+raddd*cos(4*2*PI/10),1500+raddd*sin(4*2*PI/10)],
+    [1500+raddd*cos(5*2*PI/10),1500+raddd*sin(5*2*PI/10)],
+    [1500+raddd*cos(6*2*PI/10),1500+raddd*sin(6*2*PI/10)],
+  [1500+raddd*cos(7*2*PI/10),1500+raddd*sin(7*2*PI/10)],
+    [1500+raddd*cos(8*2*PI/10),1500+raddd*sin(8*2*PI/10)],
+    [1500+raddd*cos(9*2*PI/10),1500+raddd*sin(9*2*PI/10)],
+  [1500+raddd*cos(10*2*PI/10),1500+raddd*sin(10*2*PI/10)],
+];
+
+  tianwushengtu=[
+    [1200,1500],
+    [1500,1200],
+    [1500,1500],
+    [1800,1500],
+    [1500,1800],
+  ];
+
+  tianyishengshui=[
+    [1500,2500]
+  ];
+
+widsix=350
+
+  diliuchengshui=[
+    [1500-2.5*widsix,3000],
+    [1500-1.5*widsix,3000],
+    [1500-0.5*widsix,3000],
+    [1500+0.5*widsix,3000],
+    [1500+1.5*widsix,3000],
+    [1500+2.5*widsix,3000],
+  ];
+
+  dibachengmu=[
+    [1,400],
+    [1,700],
+    [1,1000],
+    [1,1350],
+    [1,1650],
+    [1,1950],
+    [1,2250],
+    [1,2650],
+  ];
+
+  tiansanshengmu=[
+    [501,1200],
+    [501,1500],
+    [501,1800],
+  ];
+
+  tianqichenghuo=[
+    [600,1],
+    [900,1],
+    [1200,1],
+    [1500,1],
+    [1800,1],
+    [2100,1],
+    [2400,1],
+  ];
+
+  diershenghuo=[
+    [1500-250,501],
+    [1500+250,501]
+  ];
+widnine=280
+  tianjiuchengjin=[
+    [3000,1500-4*widnine],
+    [3000,1500-3*widnine],
+    [3000,1500-2*widnine],
+    [3000,1500-1*widnine],
+    [3000,1500],
+    [3000,1500+1*widnine],
+    [3000,1500+2*widnine],
+    [3000,1500+3*widnine],
+    [3000,1500+4*widnine],
+  ];
+
+  disishengjin=[
+    [2500,1050],
+    [2500,1350],
+    [2500,1650],
+    [2500,1950],
+  ];
+
+rc.polygon(dishichengtu,{
+  fill: coloring.color1,
+  fillStyle: random(["hachure"]),
+  fillWeight: 100*random(0.11,0.3),
+  hachureAngle: random(0,180),
+  stroke: "transparent",
+}
+)
+
+fill(colors.sand1)
+for (k=0;k<5;k++){
+  circle(tianwushengtu[k][0],tianwushengtu[k][1],50)
+}
+
+fill(coloring.color1)
+for (k=0;k<1;k++){
+  circle(tianyishengshui[k][0],tianyishengshui[k][1],100)
+}
+fill(colors.sand1)
+for (k=0;k<1;k++){
+  circle(tianyishengshui[k][0],tianyishengshui[k][1],50)
+}
+
+fill(coloring.color1)
+for (k=0;k<6;k++){
+  circle(diliuchengshui[k][0],diliuchengshui[k][1],50)
+}
 
 
+fill(coloring.color1)
+for (k=0;k<8;k++){
+  circle(dibachengmu[k][0],dibachengmu[k][1],50)
+}
+
+
+fill(coloring.color1)
+for (k=0;k<3;k++){
+  circle(tiansanshengmu[k][0],tiansanshengmu[k][1],100)
+}
+
+fill(colors.sand1)
+for (k=0;k<3;k++){
+  circle(tiansanshengmu[k][0],tiansanshengmu[k][1],50)
+}
+
+fill(coloring.color1)
+for (k=0;k<2;k++){
+  circle(diershenghuo[k][0],diershenghuo[k][1],50)
+}
+
+
+fill(coloring.color1)
+for (k=0;k<7;k++){
+  circle(tianqichenghuo[k][0],tianqichenghuo[k][1],100)
+}
+
+fill(colors.sand1)
+for (k=0;k<7;k++){
+  circle(tianqichenghuo[k][0],tianqichenghuo[k][1],50)
+}
+
+
+fill(coloring.color1)
+for (k=0;k<4;k++){
+  circle(disishengjin[k][0],disishengjin[k][1],50)
+}
+
+
+fill(coloring.color1)
+for (k=0;k<9;k++){
+  circle(tianjiuchengjin[k][0],tianjiuchengjin[k][1],100)
+}
+
+fill(colors.sand1)
+for (k=0;k<9;k++){
+  circle(tianjiuchengjin[k][0],tianjiuchengjin[k][1],50)
+}
+
+console.log(tianyishengshui)
 
 let	x = 100+random(500,2800)
 let y = 100+random(500,2800)
@@ -139,9 +312,13 @@ for (let k=0;k<random(4,18);k++){
   y1= 200+random(100,2300)
 push()
 //translate(random(0,300),random(300,600))
-		carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
+
+  	carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
      carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
      carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
+
+
+
       // carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
       // // carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
       // carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
@@ -171,11 +348,11 @@ drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sa
   for (let k=0;k<random(4,16);k++){
   push()
 pos=carve(3000-pos[x],3000-pos[y],vertpos1,vertpos2,vertpos3,vertpos4,0)
-console.log(pos)
+//console.log(pos)
     pop()
    }
-posgras=[random(100,900),random(100,900)]
-   for (let k=0;k<2;k++){
+posgras=[random(100,1900),random(100,1900)]
+   for (let k=0;k<1;k++){
    push()
    rotate(random(0,PI/12))
   // translate(random(1330,1500),random(530,800))
@@ -229,7 +406,7 @@ function keyReleased() {
 }
 
 function drawFlower(coloring,thick,y1){
-console.log(y1)
+//console.log(y1)
 offset=random(50,100);
   framepoints=[
     [0,0],
