@@ -122,8 +122,8 @@ function draw() {
 
 
 
-let	x = 100+random(500,2300)
-let y = 100+random(500,2300)
+let	x = 100+random(500,2800)
+let y = 100+random(500,2800)
 let shapesize=random(330,500);
 let stepsize=random(0.01,0.03);
 
@@ -168,22 +168,29 @@ drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sa
 
 
   pos=[x,y]
-  for (let k=0;k<36;k++){
+  for (let k=0;k<16;k++){
   push()
 //  translate(random(0,600),random(0,600))
- pos=carve(3000-pos[x],3000-pos[y],vertpos1,vertpos2,vertpos3,vertpos4)
+ pos=carve(3000-pos[x],3000-pos[y],vertpos1,vertpos2,vertpos3,vertpos4,0)
     pop()
-
-    // push()
-    // translate(random(200,200),random(200,400))
-    // rotate(PI/3)
-    // translate(random(0,200),random(-160,-300))
-    //   carve(x,y)
-    //   pop()
-
-
-   //print(k)
    }
+
+
+   vertpos1=[random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])]
+   vertpos2=[random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])]
+   vertpos3=[random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])]
+   vertpos4=[random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])]
+
+
+   for (let k=0;k<16;k++){
+   push()
+  //translate(random(0,600),random(0,600))
+  pos=carve(3000-pos[x],3000-pos[y],vertpos1,vertpos2,vertpos3,vertpos4,1)
+     pop()
+
+
+    //print(k)
+    }
 
 
 drawFlower(colors.sand1,1,y1+600)
@@ -227,36 +234,36 @@ offset=random(50,100);
     [3000,0],
     [0,0]
   ];
-  rc.polygon(framepoints, {
-    fill: random([colors.body2,colors.body1,colors.sea2,colors.sea1,colors.sand2]),
-    fillStyle: random(["hachure"]),
-    fillWeight: thick*random(0.11,0.3),
-    hachureAngle: random(0,180),
-    stroke: "transparent",
-  });
-  rc.polygon(framepoints, {
-    fill: random([colors.sand1,colors.sand1,colors.sea2,colors.sea1,colors.sand2]),
-    fillStyle: random(["hachure"]),
-    fillWeight: thick*random(0.11,0.3),
-    hachureAngle: random(0,180),
-    stroke: "transparent",
-  });
-
-
   // rc.polygon(framepoints, {
-  //   fill: random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),
+  //   fill: random([colors.body2,colors.body1,colors.sea2,colors.sea1,colors.sand2]),
   //   fillStyle: random(["hachure"]),
   //   fillWeight: thick*random(0.11,0.3),
   //   hachureAngle: random(0,180),
   //   stroke: "transparent",
   // });
   // rc.polygon(framepoints, {
-  //   fill: random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),
+  //   fill: random([colors.sand1,colors.sand1,colors.sea2,colors.sea1,colors.sand2]),
   //   fillStyle: random(["hachure"]),
   //   fillWeight: thick*random(0.11,0.3),
   //   hachureAngle: random(0,180),
   //   stroke: "transparent",
   // });
+
+
+  rc.polygon(framepoints, {
+    fill: random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),
+    fillStyle: random(["hachure"]),
+    fillWeight: thick*random(0.11,0.3),
+    hachureAngle: random(0,180),
+    stroke: "transparent",
+  });
+  rc.polygon(framepoints, {
+    fill: random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),
+    fillStyle: random(["hachure"]),
+    fillWeight: thick*random(0.11,0.3),
+    hachureAngle: random(0,180),
+    stroke: "transparent",
+  });
 
 }
 //
@@ -315,8 +322,8 @@ function drawFrames(coloring,thick){
 
 function carve(x,y,vertpos){
 
-  let width =2500
-  	let height = 2500
+  let width =2800
+  	let height = 2800
 
   	left_x = int(width * -0.5)
   	right_x = int(width * 1.5)
@@ -402,7 +409,7 @@ function carve(x,y,vertpos){
 
 		x_offset = x - left_x
 		y_offset = y - top_y
-		if (x_offset<3100 && y_offset< 3100 && x_offset>0 && y_offset>0  ) {
+		if (x_offset<4500 && y_offset< 4500 && x_offset>0 && y_offset>0  ) {
 			column_index = int(x_offset / resolution)
 			row_index = int(y_offset / resolution)
 			//	print(column_index,row_index)
@@ -490,8 +497,8 @@ return posi
 
 function carve2(x,y,shapesize,wiggle,vertpos1,vertpos2,vertpos3,vertpos4){
 
-  let width =2500
-    let height = 2500
+  let width =2800
+    let height = 2800
 
     left_x = int(width * -0.5)
     right_x = int(width * 1.5)
@@ -587,7 +594,7 @@ y=y
 
 		x_offset = x - left_x
 		y_offset = y - top_y
-		if (x_offset<3100 && y_offset< 3100 && x_offset>0 && y_offset>0  ) {
+		if (x_offset<4500 && y_offset< 4500 && x_offset>0 && y_offset>0  ) {
 			column_index = int(x_offset / resolution)
 			row_index = int(y_offset / resolution)
 			//	print(column_index,row_index)
