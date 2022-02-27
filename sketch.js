@@ -122,65 +122,56 @@ function draw() {
 
 
 
-if (boxStyle<0.09){
-  blendMode(BLEND) //畫出裱
-}else{
-  blendMode(BLEND)
-}
-
-// let paper=[
-//   [0,0],
-//   [0,3000],
-//   [3000,3000],
-//   [3000,0]
-// ];
-// rc.polygon(paper, {
-//   fill: random([colors.sand1,colors.sand2]),
-//   fillStyle: random(["hachure"]),
-//   fillWeight: 1*random(0.11,0.3),
-//   hachureAngle: random(0,180),
-//   stroke: "transparent",
-// });
-// rc.polygon(paper, {
-//   fill: random([colors.sand1,colors.sand2]),
-//   fillStyle: random(["hachure"]),
-//   fillWeight: 1*random(0.11,0.3),
-//   hachureAngle: random(0,180),
-//   stroke: "transparent",
-// });
-// rc.polygon(paper, {
-//   fill: random([colors.sand1,colors.sand2]),
-//   fillStyle: random(["hachure"]),
-//   fillWeight: 1*random(0.11,0.3),
-//   hachureAngle: random(0,180),
-//   stroke: "transparent",
-// });
-
-let	x = 100+random(500,1800)
-let y = 100+random(500,1800)
+let	x = 100+random(500,2300)
+let y = 100+random(500,2300)
 let shapesize=random(330,500);
 let stepsize=random(0.01,0.03);
 
+vertpos1=[random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])]
+vertpos2=[random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])]
+vertpos3=[random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])]
+vertpos4=[random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])]
 
-x1 = 100+random(100,1500)
-y1= 100+random(100,1500)
-for (let k=0;k<1;k++){
+
+
+for (let k=0;k<18;k++){
+  x1 = 200+random(100,2300)
+  y1= 200+random(100,2300)
 push()
-translate(random(0,300),random(300,600))
-		carve2(x1,y1,shapesize,0)
-    carve2(x1,y1,shapesize,0)
+//translate(random(0,300),random(300,600))
+		carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
+     carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
+     carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
+      // carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
+      // // carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
+      // carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
+      //
+      // carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
+      //
+      // carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
+      //
+      // carve2(x1,y1,shapesize,0,vertpos1,vertpos2,vertpos3,vertpos4)
+      //
+
+
     //  carve2(x1,y1,shapesize,0)
       pop()
     //	carve2(x1,y1,shapesize,0)
 
 	//print(k)
 	}
+  drawFrames(random([colors.sand2]),1)
+drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),1)
+drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand1]),1)
+drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand1]),1)
+
+
 
   pos=[x,y]
-  for (let k=0;k<6;k++){
+  for (let k=0;k<36;k++){
   push()
-  translate(random(0,600),random(0,600))
-   pos=carve(3000-pos[x],3000-pos[y])
+//  translate(random(0,600),random(0,600))
+ pos=carve(3000-pos[x],3000-pos[y],vertpos1,vertpos2,vertpos3,vertpos4)
     pop()
 
     // push()
@@ -195,12 +186,10 @@ translate(random(0,300),random(300,600))
    }
 
 
+drawFlower(colors.sand1,1,y1+600)
 
- drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),1)
-drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),1)
-drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand1]),1)
-drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand1]),1)
-drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand1]),1)
+
+// drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand1]),1)
 //drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand1]),1)
 //drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),1)
 
@@ -223,27 +212,67 @@ function exportImage() {
 function keyReleased() {
   "1" == key && exportImage()
 }
-//
-function drawFrames(coloring,thick){
+
+function drawFlower(coloring,thick,y1){
+console.log(y1)
+offset=random(50,100);
   framepoints=[
     [0,0],
     [0,3000],
     [3000,3000],
-    [3000,2400],
-    [200,2400],
-    [200,600],
-    [2800,600],
-    [2800,2400],
-    [3000,2400],
+    // [3000,y1+offset],
+    // [0,y1+offset],
+    // [0,y1],
+    // [3000,y1],
     [3000,0],
     [0,0]
-  ]
+  ];
+  rc.polygon(framepoints, {
+    fill: random([colors.body2,colors.body1,colors.sea2,colors.sea1,colors.sand2]),
+    fillStyle: random(["hachure"]),
+    fillWeight: thick*random(0.11,0.3),
+    hachureAngle: random(0,180),
+    stroke: "transparent",
+  });
+  rc.polygon(framepoints, {
+    fill: random([colors.sand1,colors.sand1,colors.sea2,colors.sea1,colors.sand2]),
+    fillStyle: random(["hachure"]),
+    fillWeight: thick*random(0.11,0.3),
+    hachureAngle: random(0,180),
+    stroke: "transparent",
+  });
+
+
+  // rc.polygon(framepoints, {
+  //   fill: random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),
+  //   fillStyle: random(["hachure"]),
+  //   fillWeight: thick*random(0.11,0.3),
+  //   hachureAngle: random(0,180),
+  //   stroke: "transparent",
+  // });
+  // rc.polygon(framepoints, {
+  //   fill: random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand2]),
+  //   fillStyle: random(["hachure"]),
+  //   fillWeight: thick*random(0.11,0.3),
+  //   hachureAngle: random(0,180),
+  //   stroke: "transparent",
+  // });
+
+}
+//
+function drawFrames(coloring,thick){
+
 
   framepointRandom=[
     [random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])],
-    [random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])],
+  vertpos1,
   [random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])],
+
+  vertpos2,
   [random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])],
+  vertpos3,
+  [random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])],
+  vertpos4,
   [random([0,300,800,2200,2800,3000]),random([0,300,800,2200,2800,3000])],
   ];
 
@@ -268,23 +297,23 @@ function drawFrames(coloring,thick){
     hachureAngle: random(0,180),
     stroke: "transparent",
   });
-  rc.polygon(framepointRandom, {
-    fill: coloring,
-    fillStyle: random(["hachure"]),
-    fillWeight: thick*random(0.11,0.3),
-    hachureAngle: random(0,180),
-    stroke: "transparent",
-  });
-  rc.polygon(framepointRandom, {
-    fill: coloring,
-    fillStyle: random(["hachure"]),
-    fillWeight: thick*random(0.11,0.3),
-    hachureAngle: random(0,180),
-    stroke: "transparent",
-  });
+  // rc.polygon(framepointRandom, {
+  //   fill: coloring,
+  //   fillStyle: random(["hachure"]),
+  //   fillWeight: thick*random(0.11,0.3),
+  //   hachureAngle: random(0,180),
+  //   stroke: "transparent",
+  // });
+  // rc.polygon(framepointRandom, {
+  //   fill: coloring,
+  //   fillStyle: random(["hachure"]),
+  //   fillWeight: thick*random(0.11,0.3),
+  //   hachureAngle: random(0,180),
+  //   stroke: "transparent",
+  // });
 }
 
-function carve(){
+function carve(x,y,vertpos){
 
   let width =2500
   	let height = 2500
@@ -309,9 +338,9 @@ function carve(){
 	//print("m length "+m.length)
 
 	gain=int(random(-3.1,3.1));
-	bend=random(0.012,0.013);
+	bend=random(0.12,0.13);
 	offset=random(0,num_rows)
-	if (random(0,1)<0.5) {
+	if (random(0,1)<0.99) {
 		quantum=1;
 		for (let column=0; column<num_columns; column++) {
 			for (row=0; row<num_rows; row++) {
@@ -349,6 +378,8 @@ function carve(){
 	else if (dice>0.999995){
 		//fill(random([coloring.color1,coloring.color2,coloring.color3]))
 		noStroke();
+    stroke(random([coloring.color1,coloring.color2,coloring.color3]))
+
     noFill()
 	}
 	else {
@@ -363,8 +394,9 @@ function carve(){
 	let dice2=random(0,1)
 	 shapesize=random(330,500);
 	 stepsize=random(0.1,0.3);
+   curvelegnth=50+random(250,400);
 	stroke(random([coloring.color1,coloring.color2,coloring.color3]))
-	for (k=0;k<50+random(250,400);k+=1+random(0,3)) {
+	for (k=0;k<curvelegnth;k+=1+random(0,3)) {
 		strokeWeight(0.1+random(0,0.5))
 
 
@@ -378,20 +410,28 @@ function carve(){
 			x_step = stepsize*resolution * cos(grid_angle)
 			y_step = stepsize*resolution * sin(grid_angle)
 			//	vertex(x, y)
-
+strokeWeight(0.1)
 			//draw shapes
 			if (dice2>0.50){
 				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
 				noFill()
 			//rect(x,y,shapesize,shapesize)
 				vertex(x, y)
+  //      strokeWeight(0.1/k+0.1/(curvelegnth-k))
+        line(x,y,vertpos1[0],vertpos1[1])
+        line(x,y,vertpos2[0],vertpos2[1])
+        line(x,y,vertpos3[0],vertpos3[1])
 			}
 			else if (dice2<0.20 && dice2>0.1){
 				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
 				//fill(random([coloring.color1,coloring.color2,coloring.color3]))
 				//	ellipse(x,y,shapesize,shapesize)
-				rect(x,y,shapesize,shapesize)
+			//	rect(x,y,shapesize,shapesize)
 				vertex(x, y)
+  //      strokeWeight(0.1/k+0.1/(curvelegnth-k))
+        line(x,y,vertpos1[0],vertpos1[1])
+        line(x,y,vertpos2[0],vertpos2[1])
+
 
 			}
 			else if (dice2<0.30 && dice2>0.2){
@@ -402,14 +442,20 @@ function carve(){
         noFill()
 				rect(x,y,shapesize,random(1,1)*shapesize)
     	vertex(x, y)
+//      strokeWeight(0.1/k+0.1/(curvelegnth-k))
+      line(x,y,vertpos1[0],vertpos1[1])
+      line(x,y,vertpos2[0],vertpos2[1])
+      line(x,y,vertpos3[0],vertpos3[1])
 			}
-			else if (dice2<0.7){
+			else if (dice2<0.9){
 				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
 				//				fill(0)
 				noFill()
-
+//strokeWeight(0.1/k+0.1/(curvelegnth-k))
 				vertex(x, y)
-
+        line(x,y,vertpos1[0],vertpos1[1])
+        line(x,y,vertpos2[0],vertpos2[1])
+        line(x,y,vertpos3[0],vertpos3[1])
 
 			}
 			else {
@@ -417,8 +463,10 @@ function carve(){
 				stroke(random([coloring.color1,coloring.color2,coloring.color3]))
 				//fill(0)
 				noFill()
+        strokeWeight(0.2)
 				rect(x,y,random(1,1)*shapesize,shapesize)
-
+        // line(x,y,vertpos1[0],vertpos1[1])
+        // line(x,y,vertpos2[0],vertpos2[1])
 				//	vertex(x, y)
 
 			}
@@ -433,13 +481,14 @@ function carve(){
 		}
     stroke(random([coloring.color1,coloring.color2,coloring.color3]))
 noFill()
+strokeWeight(0.1)
 		endShape()
 	}
 posi=[x,y];
 return posi
 }
 
-function carve2(x,y,shapesize,wiggle){
+function carve2(x,y,shapesize,wiggle,vertpos1,vertpos2,vertpos3,vertpos4){
 
   let width =2500
     let height = 2500
@@ -516,73 +565,24 @@ function carve2(x,y,shapesize,wiggle){
 	//vertex(1100,1300)
 
 //	let dice2=random(0,1)
-	let stepsize=random(0.1,0.2);
+	// let stepsize=random(1.1,1.2);
+  let stepsize=random(0.5,0.6);
+
 //	print("dice2=  "+dice2)
 	let curvelength=random(215,400);
 	//stroke(255)
  //measure balance
- let tl=0
- let tr=0
- let bl=0
- let br=0
- let centrepoint =900
- xtemp=x;
- ytemp=y;
 
 
-	for (k=0;k<50+curvelength;k+=1+random(0,2)) {
-		strokeWeight(0.1+random(0,0.5))
-
-
-		x_offset = xtemp - left_x
-		y_offset = ytemp - top_y
-
-		if (x_offset<6100 && y_offset< 6100 && x_offset>0 && y_offset>0  ) {
-			column_index = int(x_offset / resolution)
-			row_index = int(y_offset / resolution)
-			//	print(column_index,row_index)
-			// NOTE: normally you want to check the bounds here
-			grid_angle = m[column_index][row_index]
-			x_step = stepsize*resolution * cos(grid_angle)
-			y_step = stepsize*resolution * sin(grid_angle)
-			//
-			//pop()
-			xtemp = xtemp + x_step+int(random(0,1));
-			ytemp = ytemp + y_step+int(random(0,1));
-//      print(xtemp,ytemp)
-      if (xtemp < centrepoint && ytemp < centrepoint){
-				tl=tl+1;
-			}
-			else if (xtemp < centrepoint && ytemp > centrepoint){
-				bl=bl+1;
-			}
-			else if (xtemp > centrepoint && ytemp < centrepoint) {
-				tr=tr+1;
-			}
-			else{
-				br=br+1;
-			}
-		}
-	}
-// print("tl= "+tl)
-// print("tr= "+tr)
-// print("bl= "+bl)
-// print("br= "+br)
-
-
-
-
-shiftX=wiggle*600*(tl-tr+bl-br)/(tl+tr+bl+br);
-shiftY=wiggle*600*(tl+tr-bl-br)/(tl+tr+bl+br);
 // print(shiftX,shiftY)
 // print(x,y)
-x=x+shiftX;
-y=y+shiftY;
-print(x,y)
+x=x
+y=y
+
 
 	//draw
 	for (k=0;k<50+curvelength;k+=1+random(0,3)) {
-		strokeWeight(0.1+random(0,0.5))
+    strokeWeight(0.1+random(0,0.5))
 
 
 		x_offset = x - left_x
@@ -605,8 +605,15 @@ print(x,y)
 // )
 noFill()
 			//	ellipse(x,y,shapesize,shapesize)
+     strokeWeight(0.1)
 			rect(x,y,shapesize,random(1,1)*shapesize)
-
+    //   strokeWeight(1.5*sqrt(1/(k+2)+1/(50+curvelength-k+2)))
+     strokeWeight(0.1)
+      line(x,y,vertpos1[0],vertpos1[1])
+      line(x+shapesize,y,vertpos2[0],vertpos2[1])
+        line(x+shapesize,y+shapesize,vertpos3[0],vertpos3[1])
+        line(x,y+shapesize,vertpos3[0],vertpos3[1])
+strokeWeight(0.1)
 			//
 			//pop()
 			x = x + x_step+int(random(0,1))
@@ -614,7 +621,7 @@ noFill()
 
 //print(x,y)
 
-	//		circle(x,y,3)
+			circle(x,y,300)
 		}
 
 
