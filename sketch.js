@@ -171,7 +171,7 @@ function setup() {
 }
 
 function draw() {
-  drawhetu()
+//  drawhetu()
 
   let	x = 100+random(500,2800)
   let y = 100+random(500,2800)
@@ -329,14 +329,17 @@ function draw() {
 
   for (let k=0;k<random(4,16);k++){
 
-    tiandiX=ceil(random(0,1)*10)-1;
-    shengchengX=ceil(random(0,tiandiX+0.00001))-1;
+    tiandi=ceil(random(0,1)*10)-1;
+    shengchengX=ceil(random(0,tiandi+0.00001))-1;
 
-    tiandiY=ceil(random(0,1)*10)-1;
-    shengchengY=ceil(random(0,tiandiY+0.00001))-1;
 
-    x1 = fullgua[tiandiX][shengchengX][0]
-    y1= fullgua[tiandiY][shengchengY][1]
+    shengchengY=ceil(random(0,tiandi+0.00001))-1;
+
+    x1 = fullgua[tiandi][shengchengX][0]
+    y1= fullgua[tiandi][shengchengY][1]
+// console.log(tiandi,shengchengX,shengchengY)
+//     x1=100
+//     y1=100
     push()
     //translate(random(0,300),random(300,600))
 
@@ -375,11 +378,18 @@ function draw() {
   drawFrames(random([colors.sand1,colors.sand1,colors.sand1,colors.sand1,colors.sand1]),1)
 
 
-
+console.log(x,y)
   pos=[x,y]
   for (let k=0;k<random(4,16);k++){
+    shengchengX=ceil(random(0,tiandi+0.00001))-1;
+
+
+    shengchengY=ceil(random(0,tiandi+0.00001))-1;
+
+    x1 = fullgua[tiandi][shengchengX][0]
+    y1= fullgua[tiandi][shengchengY][1]
     push()
-    pos=carve(3000-pos[x],3000-pos[y],vertpos1,vertpos2,vertpos3,vertpos4)
+    pos=carve(x1,y1,vertpos1,vertpos2,vertpos3,vertpos4)
     //console.log(pos)
     pop()
   }
@@ -448,11 +458,21 @@ function draw() {
     fullgua[tiandi][shengchengY][1],
   ]
 
+console.log(pos[x],pos[y])
+
+shengchengX=ceil(random(0,tiandi+0.00001))-1;
+
+
+shengchengY=ceil(random(0,tiandi+0.00001))-1;
+
+x1 = fullgua[tiandi][shengchengX][0]
+y1= fullgua[tiandi][shengchengY][1]
 
   for (let k=0;k<random(4,16);k++){
+
     push()
     //translate(random(0,600),random(0,600))
-    pos=carve(3000-pos[x],3000-pos[y],vertpos1,vertpos2,vertpos3,vertpos4)
+    pos=carve(x1,y1,vertpos1,vertpos2,vertpos3,vertpos4)
     pop()
 
 
