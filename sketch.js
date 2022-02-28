@@ -51,7 +51,7 @@ if (yaosix<0.5){
 }
 
 
-console.log(yao)
+
 
 window.$fxhashFeatures = {
   "Guardian Beast": getSeasonStyle(seasonpicker),
@@ -171,7 +171,7 @@ function setup() {
 }
 
 function draw() {
-//  drawhetu()
+  drawhetu()
 
   let	x = 100+random(500,2800)
   let y = 100+random(500,2800)
@@ -278,6 +278,10 @@ function draw() {
     tianjiuchengjin,
     dishichengtu
   ];
+
+console.log(yao)
+yaofour=fourgua(yao)
+console.log(yaofour)
 
   tiandi=ceil(random(0,1)*10)-1;
   shengchengX=ceil(random(0,tiandi+0.00001))-1;
@@ -458,7 +462,6 @@ console.log(x,y)
     fullgua[tiandi][shengchengY][1],
   ]
 
-console.log(pos[x],pos[y])
 
 shengchengX=ceil(random(0,tiandi+0.00001))-1;
 
@@ -505,6 +508,33 @@ function exportImage() {
 
 function keyReleased() {
   "1" == key && exportImage()
+}
+
+function fourgua(yao){
+  let yaofour=[]
+for (k=0;k<4;k++){
+yaofour[k]=yao2gua([yao[k],yao[k+1],yao[k+2]])
+}
+return yaofour
+}
+
+function yao2gua(yaoyao){
+  yaothree = createVector(yaoyao[0],yaoyao[1],yaoyao[2]);
+  if (yaothree.equals([1,1,1])){
+    return "qian";
+  }else if(yaothree.equals([1,1,0])){
+    return "dui"
+  }else if (yaothree.equals([0,0,0])){
+    return "kun"
+  }else if (yaothree.equals([1,0,1])){
+    return "li"
+  }else if (yaothree.equals([0,1,1])){
+    return "xun"
+  }else if (yaothree.equals([1,0,0])){
+    return "zhen"
+  }else if (yaothree.equals([0,0,1])){
+    return "gen"
+  }else return "kan"
 }
 
 function drawFlower(coloring,thick,y1){
