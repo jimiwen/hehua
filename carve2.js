@@ -113,7 +113,7 @@ strokeWeight(0.1)
 
 //print(x,y)
 
-			circle(x,y,300)
+			//circle(x,y,300)
 		}
 
 
